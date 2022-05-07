@@ -1,0 +1,208 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+    {% if no_permit_message %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>You have no permission for purchasing flights from {{airline_name}}!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if sold_out_message %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Flight Already Sold Out, Please Choose another!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if buy_limit_message %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>You have reached the purchase limit of this flight!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if default_agent_view %}
+        <h3 style='margin-bottom: 10px; margin-top: 10px;'>Upcoming Flights purchased by {{ username }}</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Airline</th>
+                <th scope="col">Flight Num</th>
+                <th scope="col">Dept.Airport</th>
+                <th scope="col">Arrl. Airport</th>
+                <th scope="col">Dept. Time</th>	
+                <th scope="col">Arrl. Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Customer Email</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in default_agent_view %}
+                <tr>
+                    <td>{{line['airline_name']}}</td>
+                    <td>{{line['flight_num']}}</td>
+                    <td>{{line['departure_airport']}}</td>
+                    <td>{{line['arrival_airport']}}</td>
+                    <td>{{line['departure_time']}}</td>
+                    <td>{{line['arrival_time']}}</td>
+                    <td>{{line['status']}}</td>
+                    <td>{{line['customer_email']}}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div></div>
+        <form action="" method="POST" class="row g-3">
+            <div class="col-6">
+                <span>Start Date </span>	
+                <input type="date" name = "start_date" class="form-control" required>
+            </div>
+            <div class="col-6">
+                <span>End Date</span>
+                <input type="date" name = "end_date" class="form-control" required>
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-primary" value = Search>Refresh</button>
+            </div>
+            <div></div>
+        </form>
+    {% endif %}
+
+    <!-- airport search -->
+    <h3 style='margin-bottom: 10px; margin-top: 10px;'>Search by airport</h2>
+        <form action="" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name = "departure_airport" class="form-control" placeholder="Departure Airport" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name = "arrival_airport" class="form-control" placeholder="Arrival Airport" required>
+            </div>
+            <div class="col-6">
+                <span>Departure Date (Optional)</span>	
+                <input type="date" name = "departure_date" class="form-control">
+            </div>
+            <div class="col-6">
+                <span>Return Date (Optional)</span>
+                <input type="date" name = "return_date" class="form-control">
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-primary" value = Search>Search</button>
+            </div>
+            <div></div>
+        </form>
+        {% if agent_error1 %}
+            <p class="error"><strong>Error:</strong> {{agent_error1}}</p>
+        {% endif %}
+    </form>
+
+    <!-- city search -->
+    <h3 style='margin-bottom: 10px; margin-top: 10px;'>Search by city</h2>
+        <form action="" method="POST" class="row g-3">
+            <div class="col-md-6">
+                <input type="text" name = "departure_city" class="form-control" placeholder="Departure City" required>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name = "arrival_city" class="form-control" placeholder="Arrival City" required>
+            </div>
+            <div class="col-6">
+                <span>Departure Date (Optional)</span>	
+                <input type="date" name = "departure_date" class="form-control">
+            </div>
+            <div class="col-6">
+                <span>Return Date (Optional)</span>
+                <input type="date" name = "return_date" class="form-control">
+            </div>
+            <div class="col-12">
+            <button type="submit" class="btn btn-primary" value = Search>Search</button>
+            </div>
+            <div></div>
+        </form>
+        {% if agent_error2 %}
+            <p class="error"><strong>Error:</strong> {{agent_error2}}</p>
+        {% endif %}
+    </form>
+
+    <!-- desplay search result -->
+        {% if agent_search1 %}
+        <h3 style='margin-bottom: 10px; margin-top: 10px;'>Search result</h3>
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Airline</th>
+                <th scope="col">Flight Num</th>
+                <th scope="col">Dept. Airport</th>
+                <th scope="col">Arrl. Airport</th>
+                <th scope="col">Dept. Time</th>	
+                <th scope="col">Arrl. Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for line in agent_search1 %}
+                <tr>
+                    <td>{{line['airline_name']}}</td>
+                    <td>{{line['flight_num']}}</td>
+                    <td>{{line['departure_airport']}}</td>
+                    <td>{{line['arrival_airport']}}</td>
+                    <td>{{line['departure_time']}}</td>
+                    <td>{{line['arrival_time']}}</td>
+                    <td>{{line['status']}}</td>
+                    <td>
+                        <form method="POST" action="">
+                            <input type="hidden" name="purchase_flight_num" value = "{{line['flight_num']}}">
+                            <input type="hidden" name="purchase_airline_name" value = "{{line['airline_name']}}">
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Purchase</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}	
+
+    <!-- desplay search result -->
+        {% if agent_search2 %}
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Airline</th>
+                <th scope="col">Flight Num</th>
+                <th scope="col">Dept. Airport</th>
+                <th scope="col">Arrl. Airport</th>
+                <th scope="col">Dept. Time</th>	
+                <th scope="col">Arrl. Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in agent_search2 %}
+                <tr>
+                    <td>{{line['airline_name']}}</td>
+                    <td>{{line['flight_num']}}</td>
+                    <td>{{line['departure_airport']}}</td>
+                    <td>{{line['arrival_airport']}}</td>
+                    <td>{{line['departure_time']}}</td>
+                    <td>{{line['arrival_time']}}</td>
+                    <td>{{line['status']}}</td>
+                
+                    <td>
+                        <form method="POST" action="">
+                            <input type="hidden" name="purchase_flight_num" value = "{{line['flight_num']}}">
+                            <input type="hidden" name="purchase_airline_name" value = "{{line['airline_name']}}">
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Purchase</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}	
+
+
+{% endblock %}

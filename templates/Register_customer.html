@@ -1,0 +1,76 @@
+{% extends 'Login_base.html' %}
+
+{% block content %}
+
+    <form method="Post"> 
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            <label for="email">Email address</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+            <label for="password1">Password</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Password Again">
+            <label for="password2">Check your Password</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Name" name="Name" placeholder="Name">
+            <label for="Name">Name</label>
+          </div><br/>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="Street" name="Street" placeholder="Street">
+                <label for="Street">Street</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="buildingnumber" name="buildingnumber" placeholder="Building No.">
+                <label for="buildingnumber">Building No.</label>
+              </div>
+            </div>
+          </div><br/>
+          <div class="row">
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="City" name="City" placeholder="City">
+                <label for="City">City</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="State" name="State" placeholder="State">
+                <label for="State">State</label>
+              </div>
+            </div>
+          </div><br/>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Phone Number" name="Phone Number" placeholder="Phone Number">
+            <label for="Phone Number">Phone Number</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="number" class="form-control" id="Passport Number" name="Passport Number" placeholder="Passport Number">
+            <label for="Passport Number">Passport Number</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="date" class="form-control" id="Passport Expiration" name="Passport Expiration" placeholder="Passport Expiration">
+            <label for="Passport Expiration">Passport Expiration</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="text" class="form-control" id="Passport Country" name="Passport Country" placeholder="Passport Country">
+            <label for="Passport Country">Passport Country</label>
+          </div><br/>
+          <div class="form-floating">
+            <input type="date" class="form-control" id="Date of Birth" name="Date of Birth" placeholder="Date of Birth">
+            <label for="Date of Birth">Date of Birth</label>
+          </div><br/>
+          <input class="btn btn-primary" type="submit" value="Submit">
+          {% if error %}
+		        <p class="error"><strong>Error:</strong> {{error}}</p>
+	        {% endif %}
+    </form>
+
+{% endblock %}

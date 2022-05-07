@@ -1,0 +1,20 @@
+{% extends 'Login_base.html' %}
+
+{% block content %}
+
+    <form method="Post"> 
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            <label for="email">Email address</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+            <label for="password">Password</label>
+        </div><br/>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        {% if error %}
+              <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+    </form>
+
+{% endblock %}

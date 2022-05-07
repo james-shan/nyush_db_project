@@ -1,0 +1,51 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<style type="text/css">
+    th:tr{
+        color: blue;
+    }
+    tr:nth-of-type(n){
+        border: 1px solid rgb(255, 255, 255);
+        background-color: black;
+    }
+    td{
+        padding: 8px 8px;
+        border: 1px solid rgb(255, 255, 255);
+    }
+</style>
+
+ <h3>Top 3 Destinations in past 3 months</h3><br/>
+ <table style="margin-left: 20px;" width="500">
+    <th>
+        <tr style="color:rgb(53, 151, 237); ">
+        <td>No.</td>
+        <td>Destination</td>
+    </tr>
+    </th>
+{% for i in range(3) %}
+<tr style="color:rgb(244, 237, 237);"">
+    <td>{{i+1}}</td>
+    <td>{{top3_monthly[i]}}</td>
+{% endfor %}
+</tr>
+</table>
+
+<h3>Top 3 Destinations in past year</h3><br/>
+ <table style="margin-left: 20px;", width="500">
+    <th>
+        <tr style="color:rgb(53, 151, 237); ">
+        <td>No.</td>
+        <td>Destination</td>
+    </tr>
+    </th>
+{% for i in range(3) %}
+<tr style="color:rgb(244, 237, 237);"">
+    <td>{{i+1}}</td>
+    <td>{{top3_annually[i]}}</td>
+{% endfor %}
+</tr>
+</table>
+
+{% endblock %}

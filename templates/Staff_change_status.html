@@ -1,0 +1,35 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="/Staff" role="button">Back Home</a>
+<p></p>
+<div></div>
+    {% if error%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{error}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% elif change_success_message %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{change_success_message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+
+    <form method = "Post" action = "" class="row g-3 align-items-center">
+        <div class="col-3">
+            <input type="number" class="form-control" name="flight_num" placeholder="Flight to be change" required>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" name = "status" placeholder="Status" required>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary">Change Status</button>
+        </div>
+      </form>
+    <div></div>
+
+{% endblock %}

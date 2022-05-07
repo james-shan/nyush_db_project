@@ -1,0 +1,66 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+{% if purchase_limit_message %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>You have reached the purchase limit of this flight! Try buying less!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+{% if flight_confirm %}
+    <h2>Please Confirm and Purchase Your Flight!</h2>
+    <div></div>
+    <div></div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Airline</th>
+            <th scope="col">Flight Num</th>
+            <th scope="col">Dept. Airport</th>
+            <th scope="col">Arrl. Airport</th>
+            <th scope="col">Dept. Time</th>	
+            <th scope="col">Arrl. Time</th>
+            <th scope="col">Price</th>
+            <th scope="col">Seats Available</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{flight_confirm['airline_name']}}</td>
+                <td>{{flight_confirm['flight_num']}}</td>
+                <td>{{flight_confirm['departure_airport']}}</td>
+                <td>{{flight_confirm['arrival_airport']}}</td>
+                <td>{{flight_confirm['departure_time']}}</td>
+                <td>{{flight_confirm['arrival_time']}}</td>
+                <td>{{flight_confirm['price']}}</td>
+                <td>{{flight_confirm['seats_remaining']}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div></div>
+    <div></div>
+    <form method = "Post" action = "" class="row g-3 align-items-center">
+        <div class="col-6">
+            <span>Credit Card Number</span>
+            <input minlength = "18" maxlength = "18" type="text" pattern="[A-Z0-9-]+" class="form-control" name = "ccn" placeholder="XXXXX-XXXXX-XXXXX-XXXXX">
+            <input type="hidden" name="success_price" value = "{{flight_confirm['price']}}">
+            <input type="hidden" name="success_airline_name" value = "{{flight_confirm['airline_name']}}">
+            <input type="hidden" name="success_flight_num" value = "{{flight_confirm['flight_num']}}">
+        </div>
+        <div class="col-3">
+            <span>Ticket Quantity</span>
+            <input type="number" min="1" max="5" class="form-control" name = "ticket_num" value = "1">
+        </div>
+        <div class="col-3">
+          <button type="submit" class="btn btn-primary">Confirm Payment</button>
+        </div>
+      </form>
+    <div></div>
+    <p></p>
+    <p>*One customer can only buy 5 tickets from one flight</p>
+
+    {% endif %}
+   
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+    {% if view_flight %}
+        <h3 style='margin-bottom: 10px; margin-top: 10px;'>Flights of {{ airline_name }} from {{start_date}} to {{end_date}}</h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Airline</th>
+                <th scope="col">Flight Num</th>
+                <th scope="col">Dept.Airport</th>
+                <th scope="col">Arrl. Airport</th>
+                <th scope="col">Dept. Time</th>	
+                <th scope="col">Arrl. Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Customers</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in view_flight %}
+                <tr>
+                    <td>{{line['airline_name']}}</td>
+                    <td>{{line['flight_num']}}</td>
+                    <td>{{line['departure_airport']}}</td>
+                    <td>{{line['arrival_airport']}}</td>
+                    <td>{{line['departure_time']}}</td>
+                    <td>{{line['arrival_time']}}</td>
+                    <td>{{line['status']}}</td>
+                    <td>
+                        <form method="POST" action="">
+                            <input type="hidden" name="detail_flight_num" value = "{{line['flight_num']}}" >
+                            <input type="hidden" name="detail_airline_name" value = "{{line['airline_name']}}">
+                            <button type="submit" class="btn btn-outline-primary btn-sm">Details</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div></div>
+
+    {% else %}
+
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Your Airline has no flight in next 30 days! Please select time range to view more flights!</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+    
+
+    <form action="" method="POST" class="row g-3">
+        <div class="col-6">
+            <span>Start Date </span>	
+            <input type="date" name = "start_date" class="form-control" required>
+        </div>
+        <div class="col-6">
+            <span>End Date</span>
+            <input type="date" name = "end_date" class="form-control" required>
+        </div>
+        <div class="col-12">
+        <button type="submit" class="btn btn-primary" value = Search>Refresh</button>
+        </div>
+        <div></div>
+    </form>
+
+{% endblock %}

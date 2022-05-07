@@ -1,0 +1,101 @@
+{% if status == 'customer' %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{{url_for('Customer_home')}}">JM Booking</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{{url_for('Customer_Track_my_spending')}}">Track My Spending</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('Logout')}}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+{% elif status == 'agent' %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('Agent_home')}}">JM Airline</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="{{url_for('View_my_commission')}}">View My Commission</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('View_top_customers')}}">View Top Customers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('Logout')}}">Logout</a>
+          </li>
+        </ul>
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+      
+{% elif status == 'staff' %}
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{{url_for('Staff_home')}}">{{ airline_name }}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Operation
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{url_for('Staff_create_flight')}}">Create new flight</a></li>
+              <li><a class="dropdown-item" href="{{url_for('Staff_change_status')}}">Change Status of flights</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{url_for('Staff_add_airplane')}}">Add Airplane</a></li>
+              <li><a class="dropdown-item" href="{{url_for('Staff_add_airport')}}">Add new Airport</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              View
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{url_for('View_top_agent')}}">View all booking agents</a></li>
+              <li><a class="dropdown-item" href="{{url_for('View_customers')}}">View frequent customers</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{url_for('View_report')}}">View reports</a></li>
+              <li><a class="dropdown-item" href="{{url_for('Comparison_of_Revenue')}}">Comparison of Revenue earned</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{url_for('View_top_destination')}}">View Top Destinations</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Permission
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="{{url_for('Grant_new_permissions')}}">Grant new permissions</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{url_for('Add_booking_agent')}}">Add booking agents</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{url_for('Logout')}}">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+     
+{% endif %}

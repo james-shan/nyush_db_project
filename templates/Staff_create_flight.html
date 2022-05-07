@@ -1,0 +1,58 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="/Staff" role="button">Back Home</a>
+<p></p>
+<div></div>
+
+
+    {% if error%}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{error}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% elif create_success_message %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>{{create_success_message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+
+    <h3 style='margin-bottom: 10px; margin-top: 10px;'>Create new flight</h2>
+		<form action="" method="POST" class="row g-3">
+            <div class="col-md-6">
+				<input type="number" name = "flight_num" class="form-control" placeholder="Flight Number" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="number" name = "price" class="form-control" placeholder="Price" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="text" name = "departure_airport" class="form-control" placeholder="Departure Airport" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="text" name = "arrival_airport" class="form-control" placeholder="Arrival Airport" required>
+			  </div>
+            <div class="col-md-6">
+				<input type="number" name = "airplane_id" class="form-control" placeholder="Airplane ID" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="text" name = "status" class="form-control" placeholder="Flight Status" required>
+			  </div>
+			<div class="col-6">
+				<span>Departure Time(UTC)</span>	
+				<input type="datetime-local" name = "departure_time" class="form-control" required>
+			</div>
+			<div class="col-6">
+				<span>Arrival Time(UTC)</span>
+				<input type="datetime-local" name = "arrival_time" class="form-control" required>
+			</div>
+			<div class="col-12">
+			  <button type="submit" class="btn btn-primary" value = Search>Create Flight</button>
+			</div>
+			<div></div>
+		</form>
+
+{% endblock %}

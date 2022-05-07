@@ -1,0 +1,46 @@
+{% extends 'Login_base.html' %}
+
+{% block content %}
+
+    <form method="Post"> 
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="Username" name="Username" placeholder="Username">
+            <label for="Username">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+            <label for="password1">Password</label>
+        </div><br/>
+            <div class="form-floating">
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Password Again">
+        <label for="password2">Check your Password</label>
+        </div><br/>
+        <div class="row">
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="First_name" name="First_name" placeholder="First_name">
+                <label for="First_name">First_name</label>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="Last_name" name="Last_name" placeholder="Last_name">
+                <label for="Last_name">Last_name</label>
+              </div>
+            </div>
+          </div><br/>
+        <div class="form-floating">
+            <input type="date" class="form-control" id="Date of Birth" name="Date of Birth" placeholder="Date of Birth">
+            <label for="Date of Birth">Date of Birth</label>
+        </div><br/>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="Airline_name" name="Airline_name" placeholder="Airline_name">
+            <label for="Airline_name">Airline_name</label>
+        </div><br/>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        {% if error %}
+            <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+    </form>
+
+{% endblock %}

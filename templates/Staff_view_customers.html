@@ -1,0 +1,57 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="/Staff" role="button">Back Home</a>
+<p></p>
+<div></div>
+
+    {% if top_customer_message %}
+    <h3>{{top_customer_message}}</h3>
+    {% endif %}
+
+    {% if error %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{error}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+
+    <h3>Search for customer's history of flight</h3>    
+    <form method = "Post" action = "" class="row g-3 align-items-center">
+        <div class="col-9">
+            <input type="email" class="form-control" name="customer_email" placeholder="customer_email@example.com" required>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+    <div></div>
+
+    {% if search_result %}
+    <h3>All flight of your airline purchased by {{customer_email}}</h3>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Flight Number</th>
+            <th scope="col">Ticket ID</th>
+            <th scope="col">Purcase Date</th>
+
+            
+        </tr>
+        </thead>
+        <tbody>
+            {% for line in search_result %}
+            <tr>
+                <td>{{line['flight_num']}}</td>
+                <td>{{line['ticket_id']}}</td>
+                <td>{{line['purchase_date']}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <div></div>
+
+{% endblock %}

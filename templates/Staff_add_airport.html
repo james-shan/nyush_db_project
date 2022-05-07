@@ -1,0 +1,37 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="/Staff" role="button">Back Home</a>
+<p></p>
+<div></div>
+
+
+    {% if error_duplicate %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{error_duplicate}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% elif add_success_message %}
+        <div class="alert alert-sucess alert-dismissible fade show" role="alert">
+            <strong>{{add_success_message}}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+    {% endif %}
+
+    <form method = "Post" action = "" class="row g-3 align-items-center">
+        <div class="col-3">
+            <input type="text" class="form-control" name="airport_name" placeholder="Enter Airport Name" required>
+        </div>
+        <div class="col-6">
+            <input type="text" class="form-control" name = "airport_city" placeholder="Enter Airport City" required>
+        </div>
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary">Add Airplane</button>
+        </div>
+      </form>
+    <div></div>
+
+{% endblock %}

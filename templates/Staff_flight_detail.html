@@ -1,0 +1,35 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+
+<a class="btn btn-primary" href="/Staff" role="button">Back Home</a>
+
+    {% if detail_result %}
+        <h3 style='margin-bottom: 10px; margin-top: 10px;'>Detail of Flight {{ flight_num }}     |     Remaining seats: {{seats_remain}} </h3>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Ticket ID</th>
+                <th scope="col">Customer Email</th>
+                <th scope="col">Purcase Date</th>
+                <th scope="col">Booking Agent ID</th>
+                
+            </tr>
+            </thead>
+            <tbody>
+                {% for line in detail_result %}
+                <tr>
+                    <td>{{line['ticket_id']}}</td>
+                    <td>{{line['customer_email']}}</td>
+                    <td>{{line['purchase_date']}}</td>
+                    <td>{{line['booking_agent_id']}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div></div>
+
+    {% endif %}
+
+
+{% endblock %}

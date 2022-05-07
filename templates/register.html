@@ -1,0 +1,12 @@
+{% extends 'Login_base.html' %}
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+
+    <div class="btn-group">
+    <a href="{{url_for('Register_customer')}}" class="btn btn-primary">Customer</a>
+    <a href="{{url_for('Register_agent')}}" class="btn btn-primary">Booking Agent</a>
+    <a href="{{url_for('Register_staff')}}" class="btn btn-primary">Airline Staff</a>
+    </div>
+
+{% endblock %}

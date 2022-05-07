@@ -1,0 +1,21 @@
+{% extends 'Loged_base.html' %}
+
+{% block content %}
+{% if Admin_permission %}
+    <form method="Post"> 
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">
+            <label for="email">Email</label>
+        </div><br/>
+        <input class="btn btn-primary" type="submit" value="Submit">
+        <h1></h1>
+        {% if error %}
+              <p class="error"><strong>Error:</strong> {{error}}</p>
+        {% endif %}
+    </form>
+    
+{% else %}
+    <h1>You do not have the permission!</h1>
+{% endif %}
+
+{% endblock %}

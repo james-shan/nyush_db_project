@@ -1,0 +1,190 @@
+{% extends 'Login_base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Hello!</strong> {{ message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+{% endfor %}
+
+	<!-- airport search -->
+	<h3 style='margin-bottom: 10px; margin-top: 10px;'>Search by airport</h2>
+		<form action="/" method="POST" class="row g-3">
+			<div class="col-md-6">
+				<input type="text" name = "departure_airport" class="form-control" placeholder="Departure Airport" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="text" name = "arrival_airport" class="form-control" placeholder="Arrival Airport" required>
+			  </div>
+			<div class="col-6">
+				<span>Departure Date (Optional)</span>	
+				<input type="date" name = "departure_date" class="form-control">
+			</div>
+			<div class="col-6">
+				<span>Return Date (Optional)</span>
+				<input type="date" name = "return_date" class="form-control">
+			</div>
+			<div class="col-12">
+			  <button type="submit" class="btn btn-primary" value = Search>Search</button>
+			</div>
+			<div></div>
+		  </form>
+		{% if error1 %}
+			<p class="error"><strong>Error:</strong> {{error1}}</p>
+		{% endif %}
+	</form>
+
+	<!-- city search -->
+	<h3 style='margin-bottom: 10px; margin-top: 10px;'>Search by city</h2>
+		<form action="/" method="POST" class="row g-3">
+			<div class="col-md-6">
+				<input type="text" name = "departure_city" class="form-control" placeholder="Departure City" required>
+			  </div>
+			<div class="col-md-6">
+				<input type="text" name = "arrival_city" class="form-control" placeholder="Arrival City" required>
+			  </div>
+			<div class="col-6">
+				<span>Departure Date (Optional)</span>	
+				<input type="date" name = "departure_date" class="form-control">
+			</div>
+			<div class="col-6">
+				<span>Return Date (Optional)</span>
+				<input type="date" name = "return_date" class="form-control">
+			</div>
+			<div class="col-12">
+			  <button type="submit" class="btn btn-primary" value = Search>Search</button>
+			</div>
+			<div></div>
+		  </form>
+		{% if error2 %}
+			<p class="error"><strong>Error:</strong> {{error2}}</p>
+		{% endif %}
+	</form>
+
+	<!-- desplay search result -->
+	{% if search1 %}
+	<h3 style='margin-bottom: 10px; margin-top: 10px;'>Search result</h3>
+	<table class="table table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Airline Name</th>
+			<th scope="col">Flight Number</th>
+			<th scope="col">Departure Airport</th>
+			<th scope="col">Arrival Airport</th>
+			<th scope="col">Departure Time</th>	
+			<th scope="col">Arrival Time</th>
+			<th scope="col">Status</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for line in search1 %}
+			<tr>
+				<td>{{line['airline_name']}}</td>
+				<td>{{line['flight_num']}}</td>
+				<td>{{line['departure_airport']}}</td>
+				<td>{{line['arrival_airport']}}</td>
+				<td>{{line['departure_time']}}</td>
+				<td>{{line['arrival_time']}}</td>
+				<td>{{line['status']}}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	  </table>
+	{% endif %}	
+
+	<!-- desplay search result -->
+	{% if search2 %}
+	<table class="table table-striped">
+		<thead>
+		  <tr>
+			<th scope="col">Airline Name</th>
+			<th scope="col">Flight Number</th>
+			<th scope="col">Departure Airport</th>
+			<th scope="col">Arrival Airport</th>
+			<th scope="col">Departure Time</th>	
+			<th scope="col">Arrival Time</th>
+			<th scope="col">Status</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for line in search2 %}
+			<tr>
+				<td>{{line['airline_name']}}</td>
+				<td>{{line['flight_num']}}</td>
+				<td>{{line['departure_airport']}}</td>
+				<td>{{line['arrival_airport']}}</td>
+				<td>{{line['departure_time']}}</td>
+				<td>{{line['arrival_time']}}</td>
+				<td>{{line['status']}}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	  </table>
+	{% endif %}	
+
+	<h2>Check flight status</h2>
+	<!-- flight status -->
+	<form action="/" method="POST" class="row g-3">
+		<div class="col-md-6">
+			<input type="text" name = "airline_name" class="form-control" placeholder="Airline_name" required>
+		  </div>
+		<div class="col-md-6">
+			<input type="text" name = "flight_num" class="form-control" placeholder="Flight Number" required>
+		  </div>
+		<div class="col-12">
+			<span>Departure Date</span>	
+			<input type="date" name = "departure_date" class="form-control">
+		</div>
+		<span>OR</span>
+		<div class="col-12">
+			<span>Arrival Date</span>
+			<input type="date" name = "arrival_date" class="form-control">
+		</div>
+		
+		<div class="col-12">
+			<button type="submit" class="btn btn-primary" value = Search>Search</button>
+		</div>
+		<div></div>
+		<div></div>
+		{% if error3 %}
+			<p class="error"><strong>Error:</strong> {{error3}}</p>
+		{% endif %}
+	</form>	
+
+	<!-- desplay search result -->
+	{% if search3 %}
+	<h3 style='margin-bottom: 10px; margin-top: 10px;'>Search result</h3>
+		<table class="table table-striped">
+			<thead>
+			<tr>
+				<th scope="col">Airline Name</th>
+				<th scope="col">Flight Number</th>
+				<th scope="col">Departure Airport</th>
+				<th scope="col">Arrival Airport</th>
+				<th scope="col">Departure Time</th>	
+				<th scope="col">Arrival Time</th>
+				<th scope="col">Status</th>
+			</tr>
+			</thead>
+			<tbody>
+				{% for line in search3 %}
+				<tr>
+					<td>{{line['airline_name']}}</td>
+					<td>{{line['flight_num']}}</td>
+					<td>{{line['departure_airport']}}</td>
+					<td>{{line['arrival_airport']}}</td>
+					<td>{{line['departure_time']}}</td>
+					<td>{{line['arrival_time']}}</td>
+					<td>{{line['status']}}</td>
+				</tr>
+			{% endfor %}
+			</tbody>
+		</table>
+	{% endif %}		
+
+   
+{% endblock %}
